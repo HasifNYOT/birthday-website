@@ -34,7 +34,6 @@ You can add photos, videos, messages, and memories — all in one elegant, scrol
 3. Deploy it using **Vercel**, **Netlify**, or **GitHub Pages**.
 ---
 Created with ❤️ by [@Harman](https://github.com/Harmann60)
----
 
 ## Message from Creator
 Hi there! 👋
