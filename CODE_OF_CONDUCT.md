@@ -46,4 +46,3 @@ Project maintainers are responsible for clarifying and enforcing these standards
 
 ## Contact
 If you experience unacceptable behavior, please contact the repository maintainer.
->>>>>>> 1636b3294b9023a8d61a232635fbda2763009058
