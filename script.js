@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const ctx = canvas.getContext('2d');
         let petals = [];
         // const numPetals = 50;
-        const numPetals = 15;
+        const numPetals = 10;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
