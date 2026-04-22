@@ -85,7 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let petals = [];
-        const numPetals = 50;
+        // const numPetals = 50;
+        const numPetals = 35;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -95,39 +96,87 @@ document.addEventListener('DOMContentLoaded', function() {
         resizeCanvas();
 
         function Petal() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height * 2 - canvas.height;
-            this.w = 25 + Math.random() * 15;
-            this.h = 20 + Math.random() * 10;
-            this.opacity = this.w / 40;
-            this.flip = Math.random();
-            this.xSpeed = 1.5 + Math.random() * 2;
-            this.ySpeed = 1 + Math.random() * 1;
-            this.flipSpeed = Math.random() * 0.03;
+            // this.x = Math.random() * canvas.width;
+            // this.y = Math.random() * canvas.height * 2 - canvas.height;
+            // this.w = 25 + Math.random() * 15;
+            // this.h = 20 + Math.random() * 10;
+            // this.opacity = this.w / 40;
+            // this.flip = Math.random();
+            // this.xSpeed = 1.5 + Math.random() * 2;
+            // this.ySpeed = 1 + Math.random() * 1;
+            // this.flipSpeed = Math.random() * 0.03;
+            this.w = 35 + Math.random() * 20;
+            this.h = 30 + Math.random() * 15;
+            this.opacity = 0.7 + Math.random() * 0.3;
+            this.xSpeed = 0.8 + Math.random() * 1.2;
+            this.ySpeed = 0.8 + Math.random() * 1.2;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.03;
         }
 
+        // Petal.prototype.draw = function() {
+        //     if (this.y > canvas.height || this.x > canvas.width) {
+        //         this.x = -this.w;
+        //         this.y = Math.random() * canvas.height * 2 - canvas.height;
+        //         this.xSpeed = 1.5 + Math.random() * 2;
+        //         this.ySpeed = 1 + Math.random() * 1;
+        //         this.flip = Math.random();
+        //     }
+        //     ctx.globalAlpha = this.opacity;
+        //     ctx.beginPath();
+        //     ctx.moveTo(this.x, this.y);
+        //     ctx.bezierCurveTo(this.x + this.w / 2, this.y - this.h / 2, this.x + this.w, this.y, this.x + this.w / 2, this.y + this.h / 2);
+        //     ctx.bezierCurveTo(this.x, this.y + this.h, this.x - this.w / 2, this.y, this.x, this.y);
+        //     ctx.closePath();
+        //     ctx.fillStyle = '#FFB7C5';
+        //     ctx.fill();
+        // }
         Petal.prototype.draw = function() {
             if (this.y > canvas.height || this.x > canvas.width) {
                 this.x = -this.w;
                 this.y = Math.random() * canvas.height * 2 - canvas.height;
-                this.xSpeed = 1.5 + Math.random() * 2;
-                this.ySpeed = 1 + Math.random() * 1;
-                this.flip = Math.random();
+                this.xSpeed = 0.8 + Math.random() * 1.2;
+                this.ySpeed = 0.8 + Math.random() * 1.2;
             }
+            ctx.save();
             ctx.globalAlpha = this.opacity;
+            ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+            ctx.rotate(this.rotation);
+
+            // Rose petal shape - rounder and fuller
             ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.bezierCurveTo(this.x + this.w / 2, this.y - this.h / 2, this.x + this.w, this.y, this.x + this.w / 2, this.y + this.h / 2);
-            ctx.bezierCurveTo(this.x, this.y + this.h, this.x - this.w / 2, this.y, this.x, this.y);
+            ctx.moveTo(0, -this.h / 2);
+            ctx.bezierCurveTo(
+                this.w / 2, -this.h / 2,
+                this.w / 2,  this.h / 2,
+                0,           this.h / 2
+            );
+            ctx.bezierCurveTo(
+                -this.w / 2, this.h / 2,
+                -this.w / 2, -this.h / 2,
+                0,           -this.h / 2
+            );
             ctx.closePath();
-            ctx.fillStyle = '#FFB7C5';
+
+            // Rose petal gradient - deep red to soft pink
+            const gradient = ctx.createRadialGradient(0, 0, 1, 0, 0, this.w / 2);
+            gradient.addColorStop(0, '#FF6B8A');
+            gradient.addColorStop(1, '#C0003C');
+            ctx.fillStyle = gradient;
             ctx.fill();
+            ctx.restore();
         }
 
+        // Petal.prototype.update = function() {
+        //     this.x += this.xSpeed;
+        //     this.y += this.ySpeed;
+        //     this.flip += this.flipSpeed;
+        //     this.draw();
+        // }
         Petal.prototype.update = function() {
             this.x += this.xSpeed;
             this.y += this.ySpeed;
-            this.flip += this.flipSpeed;
+            this.rotation += this.rotationSpeed;
             this.draw();
         }
 
