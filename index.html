@@ -26,6 +26,26 @@
 <!-- Canvas for the falling cherry blossoms -->
 <canvas id="sakura-canvas"></canvas>
 
+<!-- Intro/Welcome Screen -->
+<div id="intro-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#1a0a0f]">
+  <canvas id="intro-canvas" class="absolute inset-0"></canvas>
+  
+  <div class="z-10 text-center px-6" id="intro-content">
+    <p class="text-pink-300 text-lg mb-2 tracking-widest font-semibold">🌸 A Special Surprise Awaits 🌸</p>
+    <h1 class="text-5xl md:text-7xl font-anime text-white drop-shadow-lg mb-4">For You</h1>
+    <p class="text-pink-200 text-md mb-10 opacity-80">Put on your headphones and press below</p>
+
+    <button id="enter-btn" class="px-10 py-4 bg-pink-500 hover:bg-pink-400 text-white text-xl font-anime rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse">
+      🎁 Open Your Surprise
+    </button>
+  </div>
+</div>
+
+<!-- Audio Player (hidden) -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
 <!-- Section 1: Hero Welcome -->
 <header class="h-screen relative flex items-center justify-center text-white overflow-hidden">
   <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">

@@ -150,5 +150,92 @@ document.addEventListener('DOMContentLoaded', function() {
         createPetals();
         animate();
     }
+
+
+    // --- Intro Screen ---
+    const introScreen = document.getElementById('intro-screen');
+    const enterBtn = document.getElementById('enter-btn');
+    const bgMusic = document.getElementById('bg-music');
+    const introCanvas = document.getElementById('intro-canvas');
+
+    // Rose petals on intro screen too
+    if (introCanvas) {
+        const ictx = introCanvas.getContext('2d');
+        let introPetals = [];
+        introCanvas.width = window.innerWidth;
+        introCanvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            introCanvas.width = window.innerWidth;
+            introCanvas.height = window.innerHeight;
+        });
+
+        function IntroPetal() {
+            this.x = Math.random() * introCanvas.width;
+            this.y = Math.random() * introCanvas.height * 2 - introCanvas.height;
+            this.w = 35 + Math.random() * 20;
+            this.h = 30 + Math.random() * 15;
+            this.opacity = 0.6 + Math.random() * 0.4;
+            this.xSpeed = 0.8 + Math.random() * 1.2;
+            this.ySpeed = 0.8 + Math.random() * 1.2;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+        }
+
+        IntroPetal.prototype.draw = function() {
+            ictx.save();
+            ictx.globalAlpha = this.opacity;
+            ictx.translate(this.x, this.y);
+            ictx.rotate(this.rotation);
+            ictx.beginPath();
+            ictx.moveTo(0, -this.h / 2);
+            ictx.bezierCurveTo(this.w/2, -this.h/2, this.w/2, this.h/2, 0, this.h/2);
+            ictx.bezierCurveTo(-this.w/2, this.h/2, -this.w/2, -this.h/2, 0, -this.h/2);
+            ictx.closePath();
+            const g = ictx.createRadialGradient(0, 0, 1, 0, 0, this.w / 2);
+            g.addColorStop(0, '#FF6B8A');
+            g.addColorStop(1, '#C0003C');
+            ictx.fillStyle = g;
+            ictx.fill();
+            ictx.restore();
+        }
+
+        IntroPetal.prototype.update = function() {
+            this.x += this.xSpeed;
+            this.y += this.ySpeed;
+            this.rotation += this.rotationSpeed;
+            if (this.y > introCanvas.height || this.x > introCanvas.width) {
+                this.x = Math.random() * introCanvas.width;
+                this.y = -this.h;
+            }
+            this.draw();
+        }
+
+        for (let i = 0; i < 30; i++) introPetals.push(new IntroPetal());
+
+        function animateIntro() {
+            if (!introScreen.classList.contains('hidden')) {
+                ictx.clearRect(0, 0, introCanvas.width, introCanvas.height);
+                introPetals.forEach(p => p.update());
+                requestAnimationFrame(animateIntro);
+            }
+        }
+        animateIntro();
+    }
+
+    // When button is clicked
+    enterBtn.addEventListener('click', () => {
+        // Start music
+        bgMusic.volume = 0.5;
+        bgMusic.play();
+
+        // Fade out intro screen
+        introScreen.style.transition = 'opacity 1.5s ease';
+        introScreen.style.opacity = '0';
+
+        setTimeout(() => {
+            introScreen.classList.add('hidden');
+        }, 1500);
+    });
 });
 
