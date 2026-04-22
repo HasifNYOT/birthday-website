@@ -170,8 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Reset petal when it goes off screen
             if (this.y > canvas.height || this.x > canvas.width) {
-                this.x = -this.w;
-                this.y = -this.h;
+                this.x = 0;
+                this.y = 0;
                 this.xSpeed = 0.8 + Math.random() * 1.2;
                 this.ySpeed = 0.8 + Math.random() * 1.2;
             }
