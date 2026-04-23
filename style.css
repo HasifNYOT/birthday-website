@@ -54,15 +54,17 @@ body {
     scrollbar-width: none;  /* Firefox */
 }
 
+/* NOTE:use with object-cover */
 @media (max-width: 640px) {
     header {
-        height: 56.25vw !important;
+        /* old : height: 56.25vw !important; */
+        height: 80vw !important; 
         min-height: unset !important;
     }
 }
 
 
-/* Note: use with object-cover in line 52 */
+/* NOTE: use with object-cover in line 52 */
 /* header video {
     object-position: center center;
 } */
