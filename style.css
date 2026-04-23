@@ -53,6 +53,9 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
-header video {
-    object-position: center center;
+@media (max-width: 640px) {
+    header {
+        height: 56.25vw !important;
+        min-height: unset !important;
+    }
 }
