@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (introCanvas) {
         const ictx = introCanvas.getContext('2d');
         let introPetals = [];
+        const numPetals2 = 10;
         introCanvas.width = window.innerWidth;
         introCanvas.height = window.innerHeight;
 
@@ -173,45 +174,46 @@ document.addEventListener('DOMContentLoaded', function() {
         function IntroPetal() {
             this.x = Math.random() * introCanvas.width;
             this.y = Math.random() * introCanvas.height * 2 - introCanvas.height;
-            this.w = 35 + Math.random() * 20;
-            this.h = 30 + Math.random() * 15;
-            this.opacity = 0.6 + Math.random() * 0.4;
-            this.xSpeed = 0.8 + Math.random() * 1.2;
-            this.ySpeed = 0.8 + Math.random() * 1.2;
-            this.rotation = Math.random() * Math.PI * 2;
-            this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+            this.w = 35 + Math.random() * 25;
+            this.h = 30 + Math.random() * 20;
+            this.opacity = this.w / 40;
+            this.flip = Math.random();
+            this.xSpeed = 1.5 + Math.random() * 2;
+            this.ySpeed = 1 + Math.random() * 1;
+            this.flipSpeed = Math.random() * 0.03;
         }
 
         IntroPetal.prototype.draw = function() {
-            ictx.save();
+            if (this.y > introCanvas.height || this.x > introCanvas.width) {
+                this.x = -this.w;
+                this.y = Math.random() * introCanvas.height * 2 - introCanvas.height;
+                this.xSpeed = 1.5 + Math.random() * 2;
+                this.ySpeed = 1 + Math.random() * 1;
+                this.flip = Math.random();
+            }
             ictx.globalAlpha = this.opacity;
-            ictx.translate(this.x, this.y);
-            ictx.rotate(this.rotation);
             ictx.beginPath();
-            ictx.moveTo(0, -this.h / 2);
-            ictx.bezierCurveTo(this.w/2, -this.h/2, this.w/2, this.h/2, 0, this.h/2);
-            ictx.bezierCurveTo(-this.w/2, this.h/2, -this.w/2, -this.h/2, 0, -this.h/2);
+            ictx.moveTo(this.x, this.y);
+            ictx.bezierCurveTo(this.x + this.w / 2, this.y - this.h / 2, this.x + this.w, this.y, this.x + this.w / 2, this.y + this.h / 2);
+            ictx.bezierCurveTo(this.x, this.y + this.h, this.x - this.w / 2, this.y, this.x, this.y);
             ictx.closePath();
-            const g = ictx.createRadialGradient(0, 0, 1, 0, 0, this.w / 2);
-            g.addColorStop(0, '#FF6B8A');
-            g.addColorStop(1, '#C0003C');
-            ictx.fillStyle = g;
+            ictx.fillStyle = '#C0003C';
             ictx.fill();
-            ictx.restore();
         }
 
         IntroPetal.prototype.update = function() {
             this.x += this.xSpeed;
             this.y += this.ySpeed;
-            this.rotation += this.rotationSpeed;
-            if (this.y > introCanvas.height || this.x > introCanvas.width) {
-                this.x = Math.random() * introCanvas.width;
-                this.y = -this.h;
-            }
+            this.flip += this.flipSpeed;
             this.draw();
         }
 
-        for (let i = 0; i < 30; i++) introPetals.push(new IntroPetal());
+        function createPetals2() {
+            introPetals = [];
+            for (let i = 0; i < numPetals2; i++) {
+                introPetals.push(new IntroPetal());
+            }
+        }
 
         function animateIntro() {
             if (!introScreen.classList.contains('hidden')) {
@@ -220,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 requestAnimationFrame(animateIntro);
             }
         }
+        createPetals2()
         animateIntro();
     }
 
