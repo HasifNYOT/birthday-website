@@ -12,6 +12,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #F0F8FF;
     color: #2c3e50;
+    overflow: hidden;
 }
 
 .font-anime {
