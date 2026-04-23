@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bgMusic.play();
         
         // Unlock scroll
-        document.body.style.overflow = '';
+        document.body.style.overflow = 'visible';
 
         // Fade out intro screen
         introScreen.style.transition = 'opacity 1.5s ease';
