@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let petals = [];
-        // const numPetals = 50;
         const numPetals = 10;
 
         function resizeCanvas() {
@@ -226,11 +225,17 @@ document.addEventListener('DOMContentLoaded', function() {
         animateIntro();
     }
 
+    // Lock scroll on start
+    document.body.style.overflow = 'hidden';
+
     // When button is clicked
     enterBtn.addEventListener('click', () => {
         // Start music
         bgMusic.volume = 0.5;
         bgMusic.play();
+        
+        // Unlock scroll
+        document.body.style.overflow = '';
 
         // Fade out intro screen
         introScreen.style.transition = 'opacity 1.5s ease';
