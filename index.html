@@ -49,17 +49,30 @@
 
 <!-- Section 1: Hero Welcome -->
 <header class="h-screen w-full relative flex items-center justify-center text-white overflow-hidden">
-  <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+  <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]"> <!--object-contain will make the video displayed as a whole but leave a blank space on top and under the video-->
+    <source src="img/sav.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="absolute inset-0 bg-#F0F8FF bg-opacity-40"></div>
+
+  <div class="text-center z-10 p-4" data-aos="fade-in" data-aos-duration="1500">
+  </div>
+</header>
+
+<!-- Section 2: Hero Welcome -->
+<header class="h-screen w-full relative flex items-center justify-center text-white overflow-hidden">
+  <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]"> <!--object-contain will make the video displayed as a whole but leave a blank space on top and under the video-->
     <source src="img/sa.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  <div class="absolute inset-0 bg-#F0F8FF bg-opacity-40"></div>
 
   <div class="text-center z-10 p-4" data-aos="fade-in" data-aos-duration="1500">
-    <h1 class="text-3xl sm:text-5xl md:text-7xl font-anime drop-shadow-lg">Happy Birthday, [Enter Name of your loved one]!</h1>
-    <p class="mt-4 text-sm sm:text-xl font-semibold">Celebrating a wonderful journey of...[in background you can add video or photos of your loved one]</p>
-    <div id="countdown" class="mt-6 text-lg sm:text-2xl font-semibold tracking-widest leading-relaxed"></div>
+    <h1 class="text-3xl sm:text-5xl md:text-7xl font-anime text-sakura drop-shadow-lg">Happy Birthday, [Enter Name of your loved one]!</h1>
+    <p class="mt-4 text-sm sm:text-xl text-sakura font-semibold">Celebrating a wonderful journey of...[in background you can add video or photos of your loved one]</p>
+    <div id="countdown" class="mt-6 text-lg sm:text-2xl text-sakura font-semibold tracking-widest leading-relaxed"></div>
   </div>
 </header>
 

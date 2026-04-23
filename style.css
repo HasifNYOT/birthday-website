@@ -53,9 +53,29 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
 @media (max-width: 640px) {
     header {
         height: 56.25vw !important;
         min-height: unset !important;
     }
 }
+
+
+/* Note: use with object-cover in line 52 */
+/* header video {
+    object-position: center center;
+} */
+
+/* Full video:
+┌─────────────────────────┐
+│  left  │ center │ right │
+│        │        │       │
+│   top  │  top   │  top  │
+├────────┼────────┼───────┤
+│  left  │ CENTER │ right │
+│ center │ CENTER │ center│ ← this is what you see
+├────────┼────────┼───────┤
+│  left  │ center │ right │
+│ bottom │ bottom │ bottom│
+└─────────────────────────┘ */
