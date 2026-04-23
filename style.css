@@ -58,7 +58,7 @@ body {
 @media (max-width: 640px) {
     header {
         /* old : height: 56.25vw !important; */
-        height: 80vw !important; 
+        height: 100vw !important; 
         min-height: unset !important;
     }
 }
