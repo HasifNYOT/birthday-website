@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // When button is clicked
     enterBtn.addEventListener('click', () => {
         // Start music
-        bgMusic.volume = 0.5;
+        bgMusic.volume = 0.7;
         bgMusic.play();
         
         // Unlock scroll
