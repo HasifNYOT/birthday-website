@@ -12,6 +12,9 @@ body {
     background-color: #F0F8FF; /* Alice Blue - a very light sky blue */
     color: #2c3e50; /* Dark Navy/Slate */
 }
+*::-webkit-scrollbar {
+    width: 0;
+}
 .font-anime {
     font-family: 'Mochiy Pop One', sans-serif;
 }
