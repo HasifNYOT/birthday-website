@@ -11,6 +11,27 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #F0F8FF; /* Alice Blue - a very light sky blue */
     color: #2c3e50; /* Dark Navy/Slate */
+    cursor: url(img/catcursor1.png), auto;
+}
+body:active {
+    cursor: url(img/catcursor2.png), auto;      /* while clicking */
+}
+::selection {
+    background-color: #FFB7C5;  /* sakura pink — matches your theme */
+    color: #2c3e50;             /* your dark navy text color */
+    cursor: url(img/catcursor1.png), text;  /* optional: keep custom cursor on selection */
+}
+a, button {
+    cursor: url(img/catcursor2.png), pointer !important;
+}
+/* also target by ID specifically */
+#enter-btn {
+    cursor: url(img/catcursor2.png), pointer !important;
+}
+/* force preload both cursor images */
+body::after {
+    content: url(img/catcursor1.png) url(img/catcursor2.png);
+    display: none;
 }
 *::-webkit-scrollbar {
     width: 0;

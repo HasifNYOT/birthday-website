@@ -244,6 +244,35 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             introScreen.classList.add('hidden');
         }, 1500);
+
+        // ← start typing ONLY after button is clicked
+        setTimeout(writeText, 1600); // small delay so intro finishes fading first
     });
+
+    const text = document.getElementById("text");
+    const speedEl = document.getElementById("speed");
+    const prog = text.innerText;  // ← reads whatever you wrote in the HTML
+    let idx = 1;
+    let speed = 300 / speedEl.value; // Calculate initial speed
+
+    text.innerText = '';  // ← clears it so the typing starts from scratch
+
+    writeText();
+
+    function writeText() {
+        text.innerText = prog.slice(0, idx);
+        idx++;
+
+        if (idx > prog.length) {
+            // idx = 1;
+            return;
+        }
+
+        // This makes the function call itself repeatedly
+        setTimeout(writeText, speed);
+    }
+
+    // Optional: Update speed dynamically when the input changes
+    speedEl.addEventListener('input', (e) => speed = 300 / e.target.value);
 });
 

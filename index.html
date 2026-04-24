@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <!-- add this line -->
+  <link rel="preload" href="img/catcursor1.png" as="image">
+  <link rel="preload" href="img/catcursor2.png" as="image">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday, TESTING12!</title>
 
-  <!-- This script pulls in Tailwind CSS for styling -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          corePlugins: {
+              cursor: false,  // disables Tailwind's cursor utilities
+          }
+      }
+  </script>
 
   <!-- These are for the animations and photo gallery -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -33,7 +42,7 @@
     <h1 class="text-4xl sm:text-5xl md:text-7xl font-anime text-white drop-shadow-lg mb-4">For You</h1>
     <p class="text-pink-200 text-xs sm:text-md mb-8 opacity-80">Put on your headphones and press below</p>
 
-    <button id="enter-btn" class="px-6 sm:px-10 py-3 sm:py-4 bg-pink-500 hover:bg-pink-400 text-white text-lg sm:text-xl font-anime rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse">
+    <button id="enter-btn" style="cursor: url(img/catcursor2.png), pointer;" class="px-6 sm:px-10 py-3 sm:py-4 bg-pink-500 hover:bg-pink-400 text-white text-lg sm:text-xl font-anime rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse">
       🎁 Open Your Surprise
     </button>
   </div>
@@ -59,12 +68,12 @@
   <div class="absolute inset-0 bg-#F0F8FF bg-opacity-40"></div>
 
   <div class="text-center z-10 p-4" data-aos="fade-in" data-aos-duration="1500">
-    <h1 class="text-3xl sm:text-5xl md:text-7xl font-anime drop-shadow-lg">Happy Birthday, [Enter Name of your loved one]!</h1>
+    <h1 id="text" class="text-3xl sm:text-5xl md:text-7xl font-anime drop-shadow-lg">Happy Birthday, [Enter Name of your loved one]!</h1>
     <p class="mt-4 text-sm sm:text-xl font-semibold">Celebrating a wonderful journey of...[in background you can add video or photos of your loved one]</p>
     <div id="countdown" class="mt-6 text-lg sm:text-2xl font-semibold tracking-widest leading-relaxed"></div>
   </div>
 </header>
-
+<input type="hidden" id="speed" value="1">
 <!-- Main Content -->
 <main class="w-full max-w-full mx-auto p-6 md:p-12 overflow-x-hidden">
 
@@ -261,6 +270,9 @@
 <!-- These scripts are for the animations and photo gallery -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+
+ <!-- your existing head content -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
 <!-- Link to your new external JavaScript file -->
 <script src="script.js"></script>
